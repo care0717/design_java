@@ -6,14 +6,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class FileProperties extends Properties implements FileIO{
-    private BufferedInputStream inStream;
-    public FileProperties(){
-        super();
-    }
     public void readFromFile(String filename) throws IOException{
-        inStream = new BufferedInputStream(
-                new FileInputStream(filename));
-        load(inStream);
+        load(new FileInputStream(filename));
     }
     public void setValue(String key, String value){
         setProperty(key, value);
@@ -21,8 +15,6 @@ public class FileProperties extends Properties implements FileIO{
     public String getValue(String key){
         return getProperty(key);
     }
-
-
     public void writeToFile(String filename) throws IOException{
         store(new FileOutputStream(filename), "Comments");
     }
